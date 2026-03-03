@@ -22,6 +22,7 @@ int main() {
     serverScript << "    def do_GET(self):\n";
     serverScript << "        if self.path == '/api/data':\n";
     serverScript << "            self.send_response(200)\n";
+    
     serverScript << "            self.send_header('Content-type', 'application/json')\n";
     serverScript << "            self.end_headers()\n";
     serverScript << "            with open('data.json', 'rb') as file:\n";

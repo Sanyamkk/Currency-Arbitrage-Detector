@@ -11,7 +11,7 @@ const rateEl = document.getElementById('rate');
 const updateRateBtn = document.getElementById('updateRate');
 const rateGraphCanvas = document.getElementById('rateGraph');
 
-async function fetchData() {
+async function fetchData(){
     try {
         const prevFrom = fromCurrencyEl.value;
         const prevTo = toCurrencyEl.value;

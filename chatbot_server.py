@@ -237,6 +237,7 @@ def ask():
     )
 
 
+
 def get_suggestions(n=5):
     return random.sample(list(faq.keys()), k=min(n, len(faq)))
 

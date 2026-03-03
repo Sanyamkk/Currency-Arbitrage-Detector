@@ -20,6 +20,7 @@ class CORSHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.wfile.write(file.read())
         elif self.path == '/api/update':
             import subprocess
+            
             subprocess.run(['./arbitrage'])
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
