@@ -16,7 +16,6 @@
     </header>
 
     <div class="dashboard grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-      <!-- Exchange Rates Panel -->
       <div class="panel bg-white rounded-lg shadow-lg p-4 sm:p-6 flex flex-col">
         <h2 class="text-xl sm:text-2xl font-bold mb-4 text-indigo-600">Exchange Rates</h2>
         <div id="exchangeRates"
@@ -24,10 +23,7 @@
           <div class="loading italic text-indigo-400">Loading rates, please wait.</div>
         </div>
       </div>
-    
-      <!-- Right Column: Add/Update Rate + Arbitrage Opportunities -->
       <div class="flex flex-col gap-6">
-        <!-- Add/Update Rate Panel -->
         <div class="add-update-section bg-white rounded-lg shadow-lg p-4 sm:p-6">
           <h3 class="text-2xl sm:text-3xl font-bold mb-6 text-indigo-700 text-center">Add/Update Rate</h3>
           <div class="form-group mb-4">
@@ -47,7 +43,6 @@
           </div>
         </div>
     
-        <!-- Arbitrage Opportunities Panel -->
         <div class="panel bg-white rounded-lg shadow-lg p-4 sm:p-6 flex flex-col">
           <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-indigo-700">Arbitrage Opportunities</h2>
           <div id="opportunities"
@@ -84,7 +79,6 @@
     </div>
   </div>
 
-  <!-- Floating Chatbot Button and Modal -->
   <button id="openChatbotBtn"
     class="fixed bottom-6 right-6 z-50 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center text-2xl focus:outline-none"
     title="Open FAQ Chatbot">

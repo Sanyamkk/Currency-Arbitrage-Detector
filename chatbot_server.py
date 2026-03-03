@@ -222,19 +222,15 @@ html_template = '''
 def chatbot_page():
     return render_template_string(html_template)
 
-
-
 @app.route('/')
 def home():
     return render_template_string(html_template)
-
 @app.route('/ask', methods=['POST'])
 def ask():
     question = request.json.get('question', '').lower()
     for key in faq:
         if key in question:
             return jsonify(answer=faq[key], suggestions=[])
-    # If not found, suggest FAQs
     return jsonify(
         answer="Sorry, I don't know that. You can try asking one of these:",
         suggestions=get_suggestions()

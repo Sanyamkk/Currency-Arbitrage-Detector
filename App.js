@@ -1,10 +1,8 @@
-// Global variables
 let currencies = [];
 let rates = [];
 let opportunities = [];
 let graph = null;
 
-// DOM elements
 const exchangeRatesEl = document.getElementById('exchangeRates');
 const opportunitiesEl = document.getElementById('opportunities');
 const fromCurrencyEl = document.getElementById('fromCurrency');
@@ -13,7 +11,6 @@ const rateEl = document.getElementById('rate');
 const updateRateBtn = document.getElementById('updateRate');
 const rateGraphCanvas = document.getElementById('rateGraph');
 
-// Fetch data from the API
 async function fetchData() {
     try {
         const prevFrom = fromCurrencyEl.value;
@@ -25,8 +22,6 @@ async function fetchData() {
         currencies = data.currencies;
         rates = data.rates;
         opportunities = data.opportunities;
-
-        // ✅ Ensure all possible currency pairs exist in rates
         currencies.forEach(from => {
             currencies.forEach(to => {
                 if (from !== to && !rates.some(r => r.from === from && r.to === to)) {
@@ -182,7 +177,6 @@ function setupOpportunityFilter() {
     filterAndRender();
 }
 
-// ✅ Update rate immediately in memory and rerender on input
 rateEl.addEventListener('input', () => {
     const from = fromCurrencyEl.value;
     const to = toCurrencyEl.value;
@@ -351,6 +345,5 @@ window.addEventListener('load', () => {
         });
     }
 });
-
 window.addEventListener('resize', resizeCanvas);
 setInterval(fetchData, 30000);

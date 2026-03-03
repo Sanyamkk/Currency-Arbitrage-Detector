@@ -3,19 +3,11 @@
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
-
-// Simple HTTP server to serve the JSON data
 int main() {
     std::cout << "Starting Currency Arbitrage Server..." << std::endl;
-    
-    // Compile the arbitrage detector
     system("g++ -o arbitrage arbitrage.cpp");
     
-    // Run the arbitrage detector to generate data.json
     system("arbitrage.exe");
-
-    
-    // Set up a simple HTTP server using Python
     std::ofstream serverScript("server.py");
     serverScript << "import http.server\n";
     serverScript << "import socketserver\n";

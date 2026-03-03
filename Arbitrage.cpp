@@ -1,12 +1,15 @@
 #include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-class ArbitrageDetector {
+class ArbitrageDetector 
+{
 private:
     vector<string> currencies;
     map<string, map<string, double>> rateGraph;
 
-    vector<string> normalizeCycle(const vector<string>& cycle) {
+    vector<string> normalizeCycle(const vector<string>& cycle) 
+    {
         if (cycle.empty()) return cycle;
         size_t n = cycle.size();
         size_t min_idx = 0;
@@ -22,20 +25,24 @@ private:
     }
 
 public:
-    void addCurrency(const string &currency) {
+    void addCurrency(const string &currency) 
+    {
         if (find(currencies.begin(), currencies.end(), currency) == currencies.end())
             currencies.push_back(currency);
     }
 
-    void updateRate(const string &from, const string &to, double rate) {
+    void updateRate(const string &from, const string &to, double rate) 
+    {
         rateGraph[from][to] = rate;
     }
 
-    vector<vector<string>> detectAllArbitrage() {
+    vector<vector<string>> detectAllArbitrage() 
+    {
         set<vector<string>> seenCycles;
         vector<vector<string>> opportunities;
 
-        for (const auto &startCurrency : currencies) {
+        for (const auto &startCurrency : currencies) 
+        {
             map<string, double> distance;
             map<string, string> predecessor;
 
@@ -44,8 +51,10 @@ public:
                 predecessor[currency] = "";
             }
 
-            for (size_t i = 0; i < currencies.size() - 1; ++i) {
-                for (const auto &from : currencies) {
+            for (size_t i = 0; i < currencies.size() - 1; ++i) 
+            {
+                for (const auto &from : currencies) 
+                {
                     for (const auto &to : currencies) {
                         if (rateGraph[from].count(to)) {
                             double rate = rateGraph[from][to];
@@ -176,8 +185,6 @@ int main() {
 
     vector<string> currencyList = {"USD", "EUR", "GBP", "JPY", "CHF", "INR"};
     for (auto &c : currencyList) detector.addCurrency(c);
-
-    // Add exchange rates (including valid ones with profit potential)
     detector.updateRate("USD", "EUR", 0.94);
     detector.updateRate("EUR", "USD", 1.1);
     detector.updateRate("USD", "GBP", 0.8);
@@ -188,7 +195,6 @@ int main() {
     detector.updateRate("CHF", "USD", 1.15);
     detector.updateRate("USD", "INR", 84.0);
     detector.updateRate("INR", "USD", 0.0121);
-
     detector.updateRate("EUR", "GBP", 0.86);
     detector.updateRate("GBP", "EUR", 1.18);
     detector.updateRate("EUR", "JPY", 162.5);
@@ -197,23 +203,18 @@ int main() {
     detector.updateRate("CHF", "EUR", 1.06);
     detector.updateRate("EUR", "INR", 89.0);
     detector.updateRate("INR", "EUR", 0.0115);
-
     detector.updateRate("GBP", "JPY", 193.0);
     detector.updateRate("JPY", "GBP", 0.0053);
     detector.updateRate("GBP", "CHF", 1.13);
     detector.updateRate("CHF", "GBP", 0.90);
     detector.updateRate("GBP", "INR", 107.0);
     detector.updateRate("INR", "GBP", 0.0095);
-
     detector.updateRate("JPY", "CHF", 0.0058);
     detector.updateRate("CHF", "JPY", 171.2);
     detector.updateRate("JPY", "INR", 0.56);
     detector.updateRate("INR", "JPY", 1.82);
-
     detector.updateRate("CHF", "INR", 95.0);
     detector.updateRate("INR", "CHF", 0.0107);
-
-    // Create arbitrage example
     detector.updateRate("USD", "EUR", 0.94);
     detector.updateRate("EUR", "GBP", 0.86);
     detector.updateRate("GBP", "USD", 1.275);
